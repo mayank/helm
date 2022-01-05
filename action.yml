@@ -45,6 +45,12 @@ inputs:
   version:
     description: Version of the app, usually commit sha works here.
     required: false
+  repository_username:
+    description: Username for helm repo
+    required: false
+  repository_password:
+    description: Password for helm repo
+    required: false
 runs:
   using: docker
   image: Dockerfile
