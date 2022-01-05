@@ -99,7 +99,7 @@ function getValueFiles(files) {
 function getInput(name, options) {
   const context = github.context;
   const deployment = context.payload.deployment;
-  let val = core.getInput(name.replace("_", "-"), {
+  let val = core.getInput(name, {
     ...options,
     required: false
   });
@@ -162,7 +162,7 @@ async function run() {
     const values = getValues(getInput("values"));
     const task = getInput("task");
     const version = getInput("version");
-    const valueFiles = getValueFiles(getInput("value_files"));
+    const valueFiles = getValueFiles(getInput("value-files"));
     const removeCanary = getInput("remove_canary");
     const helm = getInput("helm") || "helm";
     const timeout = getInput("timeout");
@@ -218,6 +218,7 @@ async function run() {
     if (chartVersion) args.push(`--version=${chartVersion}`);
     if (timeout) args.push(`--timeout=${timeout}`);
     if (repository) args.push(`--repo=${repository}`);
+    console.log('REPO USERNAMNE', repositoryUsername, repositoryPassword);
     if(repositoryUsername) args.push(`--username=${repositoryUsername}`);
     if(repositoryPassword) args.push(`--password=${repositoryPassword}`);
     valueFiles.forEach(f => args.push(`--values=${f}`));

@@ -34,7 +34,7 @@ inputs:
     description: Github repository token. If included and the event is a deployment
       the deployment_status event will be fired.
     required: false
-  value-files:
+  value_files:
     description: Additional value files to apply to the helm chart. Expects JSON encoded
       array or a string.
     required: false
