@@ -1,4 +1,4 @@
-name: Deliverybot Helm Action
+name: Grabbd Helm Deliverybot
 description: Deploys a helm chart
 author: deliverybot
 icon: box
