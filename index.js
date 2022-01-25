@@ -162,7 +162,7 @@ async function run() {
     const values = getValues(getInput("values"));
     const task = getInput("task");
     const version = getInput("version");
-    const valueFiles = getValueFiles(getInput("value-files"));
+    const valueFiles = getValueFiles(getInput("value_files"));
     const removeCanary = getInput("remove_canary");
     const helm = getInput("helm") || "helm";
     const timeout = getInput("timeout");
@@ -221,8 +221,11 @@ async function run() {
     console.log('REPO USERNAMNE', repositoryUsername, repositoryPassword);
     if(repositoryUsername) args.push(`--username=${repositoryUsername}`);
     if(repositoryPassword) args.push(`--password=${repositoryPassword}`);
-    valueFiles.forEach(f => args.push(`--values=${f}`));
-    args.push("--values=./values.yml");
+    if(valueFiles && valueFiles.length > 0) {
+      valueFiles.forEach(f => args.push(`--values=${f}`));
+    } else {
+      args.push("--values=./values.yml");
+    }
 
     // Special behaviour is triggered if the track is labelled 'canary'. The
     // service and ingress resources are disabled. Access to the canary
