@@ -223,9 +223,8 @@ async function run() {
     if(repositoryPassword) args.push(`--password=${repositoryPassword}`);
     if(valueFiles && valueFiles.length > 0) {
       valueFiles.forEach(f => args.push(`--values=${f}`));
-    } else {
-      args.push("--values=./values.yml");
     }
+    args.push("--values=./values.yml");
 
     // Special behaviour is triggered if the track is labelled 'canary'. The
     // service and ingress resources are disabled. Access to the canary
